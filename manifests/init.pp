@@ -42,6 +42,7 @@ class zabbixserver (
   $database_user     = $zabbixserver::params::database_user,
   $database_password = $zabbixserver::params::database_password,
   $database_name     = $zabbixserver::params::database_name,
+  $root_password     = $zabbixserver::params::root_password,
 
 ) inherits zabbixserver::params {
 
@@ -51,7 +52,9 @@ class zabbixserver (
   
   include apache::mod::php
 
-  class { 'mysql::server': }
+  class { 'mysql::server':
+    root_password => $root_password,
+  }
   
   class { 'zabbix':
     zabbix_url        => $zabbix_url,
@@ -61,6 +64,4 @@ class zabbixserver (
     database_password => $database_password,
     database_name     => $database_name,
   }
-
-
 }

@@ -11,6 +11,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision :shell, :path => "./.vagrant_puppet/init.sh"
 
+  config.vm.network "forwarded_port", guest: 80, host:8080
+
   config.vm.provision :puppet do |puppet|
     puppet.environment = "production"
     puppet.environment_path = "environments"

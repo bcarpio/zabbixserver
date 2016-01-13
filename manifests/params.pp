@@ -5,4 +5,5 @@ class zabbixserver::params {
   $database_user     = 'zabbix'
   $database_password = 'passw0rd'
   $database_name     = 'zabbix'
+  $root_password     = 'passw0rd'
 }
