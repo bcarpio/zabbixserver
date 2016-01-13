@@ -37,7 +37,11 @@
 #
 class zabbixserver (
 
-  $zabbix_url = $zabbixserver::params::zabbix_url
+  $zabbix_url        = $zabbixserver::params::zabbix_url,
+  $database_host     = $zabbixserver::params::database_host,
+  $database_user     = $zabbixserver::params::database_user,
+  $database_password = $zabbixserver::params::database_password,
+  $database_name     = $zabbixserver::params::database_name,
 
 ) inherits zabbixserver::params {
 
@@ -50,8 +54,12 @@ class zabbixserver (
   class { 'mysql::server': }
   
   class { 'zabbix':
-    zabbix_url    => $zabbix_url,
-    database_type => 'mysql'
+    zabbix_url        => $zabbix_url,
+    database_type     => 'mysql',
+    database_host     => $database_host,
+    database_user     => $database_user,
+    database_password => $database_password,
+    database_name     => $database_name,
   }
 
 
